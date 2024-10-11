@@ -6,7 +6,7 @@
 
 ---
 
-##Features
+## Features
 - Validates Markdown syntax and ensures consistency in formatting.
 - Checks for broken links or incorrect references in Markdown files.
 - Ensures proper file structure and naming conventions.
