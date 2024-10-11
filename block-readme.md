@@ -1,4 +1,4 @@
-### Blockchain Developer Roadmap
+# Blockchain Developer Roadmap
 
 If you're looking to dive into the world of blockchain development, this roadmap will guide you through the essential skills and technologies to master. The field of blockchain is growing rapidly, and there are plenty of opportunities. This guide is designed to be beginner-friendly, breaking down everything step by step, so you don't feel overwhelmed. Ready? Let’s get started!
 
