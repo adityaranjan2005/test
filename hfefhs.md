@@ -1,6 +1,7 @@
-# Problem Set
+Got it! Here's the Markdown file with proper formatting without changing the questions:
 
-## Don't Worry About Your Evaluation, Just Do Your Best
+```markdown
+# Problem Set
 
 ---
 
@@ -198,3 +199,5 @@ nums = [1, 1, 2, 2, 3, 4, 2, 3], k = 6, x = 2
 - For subarray `[1, 2, 2, 3, 4, 2]`, only elements `2` and `4` will be kept. Hence, `answer[1] = 2 + 2 + 2 + 4 = 10`.
 - For subarray `[2, 2, 3, 4, 2, 3]`, only elements `2` and `3` are kept. Hence, `answer[2] = 2 + 2 + 2 + 3 + 3 = 12`.
 ```
+
+This Markdown format now has consistent structure, and you can directly copy-paste it for use.
