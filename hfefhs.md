@@ -1,6 +1,3 @@
-Got it! Here's the Markdown file with proper formatting without changing the questions:
-
-```markdown
 # Problem Set
 
 ---
@@ -131,6 +128,7 @@ You are given a battlefield grid of size `n x n`. The task is to print the exact
 ```plaintext
 3
 ```
+![alt text](<Screenshot 2024-10-14 014331.png>)
 
 #### Output:
 ```plaintext
@@ -144,6 +142,8 @@ You are given a battlefield grid of size `n x n`. The task is to print the exact
 ### 1. Number Spiral Problem
 
 A number spiral is an infinite grid whose upper-left square has the number 1. Your task is to find out the number in row `y` and column `x`.
+
+![alt text](<material.png>)
 
 #### Input Format:
 - The first input line contains an integer `t`: the number of test cases.
@@ -199,5 +199,3 @@ nums = [1, 1, 2, 2, 3, 4, 2, 3], k = 6, x = 2
 - For subarray `[1, 2, 2, 3, 4, 2]`, only elements `2` and `4` will be kept. Hence, `answer[1] = 2 + 2 + 2 + 4 = 10`.
 - For subarray `[2, 2, 3, 4, 2, 3]`, only elements `2` and `3` are kept. Hence, `answer[2] = 2 + 2 + 2 + 3 + 3 = 12`.
 ```
-
-This Markdown format now has consistent structure, and you can directly copy-paste it for use.
