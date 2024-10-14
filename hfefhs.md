@@ -61,6 +61,19 @@ To make the array non-decreasing, the heights need to be adjusted to `[3, 3, 5, 
 
 ### 1. BitWar
 
+Once upon a time, there was a curious inventor named Max who loved exploring the secrets of numbers. One day, Max found two magical stones marked with numbers—one called "Left" and the other "Right." These stones represented a range of numbers in a mystical world. Max's task was to find a powerful energy hidden within this range, called "Bitwise AND."
+
+To unlock the energy, Max had to take every number between the Left and Right stones and find their bitwise AND—a special way of combining numbers by matching their "binary bits."
+
+For example:
+
+When Max had the stones Left = 5 and Right = 7, he discovered the hidden energy was 4.
+When both stones showed 0, the energy turned out to be 0.
+When the stones showed 1 and 2147483647, the powerful energy was still 0!
+Max realized the magic lay in how the numbers lined up in their binary form, and he knew the answer always depended on those mysterious bits.
+
+### Problem:
+
 Given two integers `Left` and `Right`, calculate the bitwise AND of all integers between `Left` and `Right` (inclusive).
 
 #### Example:
