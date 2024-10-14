@@ -127,10 +127,22 @@ NO SOLUTION
 
 ### 3. Way to Win
 
-You are given a battlefield grid of size `n x n`. The task is to print the exact spiral path, starting from the top-left corner (1, 1) and spiraling inward.
+In a distant land, there were two powerful kingdoms. The first kingdom's king desired to conquer the second kingdom, but their battlefield was a vast matrix guarded by a mystical force. The only way for the king to conquer the land was to navigate the matrix in a perfect spiral pattern, starting from the top-left corner and spiraling inward.
+
+The task is to help the king by printing out the exact path he should take for any battlefield size.
+
+Spiral Movement:
+Move right until you can't anymore.
+Move down until you reach the bottom.
+Move left until you can't anymore.
+Move up until you're blocked.
+Repeat the process inward, spiraling towards the center of the matrix
 
 #### Input Format:
-- A single integer `n` representing the size of the battlefield.
+- A single integer n representing the size of the battlefield (a grid of size n x n).
+
+#### Constraints
+-  `1 <= n <= 10^3`
 
 #### Output Format:
 - Print the exact spiral path for the battlefield, starting from the top-left corner.
