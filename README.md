@@ -37,7 +37,7 @@ Got it! Here’s the code for each category with all icons in a single line:
 
 **Front-end Frameworks:**
 
-[![My Skills](https://skillicons.dev/icons?i=react,vue,nextjs,bootstrap,tailwind,threejs)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=react,vue,nextjs,bootstrap,tailwind,threejs,html,css)](https://skillicons.dev)
 
 **Back-end Frameworks:**
 
