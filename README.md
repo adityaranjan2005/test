@@ -18,4 +18,4 @@
 
 
 
-[![My Skills](https://skillicons.dev/icons?i=aws,gcp,azure,react,vue,anaconda&perline=3)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=aws,gcp,azure,react,vue,anaconda,apple,appwrite,autocad,babel,bootstrap,c,cloudflare,css,d3,express,figma,firebase,flask,git,github,html,idea,java,jenkins,kubernetes,matlab,mongodb,mysql,netlify,nextjs,nodejs,notion,npm,obsidian,opencv,postman,react,redux,replit,solidity,tailwind,threejs,ts,vercel,visualstudio,vite,vscode,vue,&perline=3)](https://skillicons.dev)
