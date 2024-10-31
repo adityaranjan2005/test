@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edXtra- We Add Xtra Value</title>
+     <link rel="stylesheet" type="text/css" href="/assets/css/footer.css"> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" type="images/x-icon" href="logo.ico" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+       
+        /* Features Grid - Modified for one card per line */
+        .features-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(25, 25, 25, 0.9), rgba(35, 35, 35, 0.9));
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #ff00ff33, #00ffff33);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 255, 0.1);
+        }
+
+        .card-content {
+            flex: 1;
+            position: relative;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .feature-card p {
+            color: #aaa;
+            position: relative;
+            margin-bottom: 0;
+            max-width: 600px;
+        }
+
+        /* New Button Styles */
+        .view-content-btn {
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-left: 2rem;
+        }
+
+        .view-content-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            transition: left 0.3s ease;
+        }
+
+        .view-content-btn:hover::before {
+            left: 0;
+        }
+
+        .view-content-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .view-content-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.3);
+        }
+
+
+
+        .slider {
+            height: 100vh;
+            touch-action: pan-x;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide {
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: translateX(100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            border-radius: 0.75rem;
+            width: 80%;
+            max-width: 600px;
+        }
+        .slide-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .slide-content p {
+            font-size: 1.25rem;
+            color: #e5e7eb;
+        }
+        .slider-nav-button {
+            background: rgba(124, 58, 237, 0.3);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+
+        .slider-nav-button:hover {
+            background: rgba(124, 58, 237, 0.5);
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #7c3aed;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap" rel="stylesheet">
+<body>
+    <header>
+        <div class="container nav-container">
+           <div class="logo"> <img src="/assets/image/logo.png" alt="edXtra" class="header_img"></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#xtra">Xtra</a></li>
+                    <li><a href="#ncert">NCERT Lite</a></li>
+                    <li><a href="#join">Join Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+       <!-- Hero Slider -->
+    <div class="slider relative">
+        <div class="slide active">
+            <img src="/assets/image/cover_1.png" alt="Education Innovation" class="w-full h-full object-cover">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-2">Transform Your Learning</h2>
+                <p class="text-gray-300">Interactive lessons designed for the digital age</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="/api/placeholder/1920/1080" alt="NCERT Solutions" class="w-full h-full object-cover">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-2">NCERT Solutions</h2>
+                <p class="text-gray-300">Comprehensive chapter-wise solutions</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="/api/placeholder/1920/1080" alt="Live Classes" class="w-full h-full object-cover">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-2">Live Classes</h2>
+                <p class="text-gray-300">Learn from top educators</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="/api/placeholder/1920/1080" alt="Practice Tests" class="w-full h-full object-cover">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-2">Practice Tests</h2>
+                <p class="text-gray-300">Test your knowledge with mock exams</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="/api/placeholder/1920/1080" alt="Study Materials" class="w-full h-full object-cover">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-2">Study Materials</h2>
+                <p class="text-gray-300">Comprehensive notes and resources</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="/api/placeholder/1920/1080" alt="Doubt Solving" class="w-full h-full object-cover">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-2">Doubt Solving</h2>
+                <p class="text-gray-300">Get your questions answered 24/7</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="/api/placeholder/1920/1080" alt="Performance Analytics" class="w-full h-full object-cover">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-2">Performance Analytics</h2>
+                <p class="text-gray-300">Track your progress with detailed insights</p>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button class="slider-nav-button absolute left-4 top-1/2 transform -translate-y-1/2 px-4 py-2 rounded-full" id="prevSlide">
+            ←
+        </button>
+        <button class="slider-nav-button absolute right-4 top-1/2 transform -translate-y-1/2 px-4 py-2 rounded-full" id="nextSlide">
+            →
+        </button>
+
+        <!-- Dots Navigation -->
+        <div class="slider-dots"></div>
+    </div>
+
+
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+               
+                <div class="feature-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                    <!-- Feature Card 1 -->
+                    <div class="feature-card" style="flex: 1; min-width: 300px; padding: 20px; display: flex; flex-direction: column; align-items: center;">
+                        <div class="card-content" style="text-align: center;">
+                            <h3>Science</h3>
+                            <p>Additional practice problems, video lectures, and interactive quizzes. Take your learning experience to the next level with our extra resources.</p>
+                        </div>
+                        <button class="view-content-btn" style="margin-top: 20px; padding: 10px 20px;"><span>View Content</span></button>
+                    </div>
+                
+                    <!-- Feature Card 2 -->
+                    <div class="feature-card" style="flex: 1; min-width: 300px; padding: 20px; display: flex; flex-direction: column; align-items: center;">
+                        <div class="card-content" style="text-align: center;">
+                            <h3>Social Science</h3>
+                            <p>Comprehensive collection of previous years' questions with detailed solutions. Practice with real exam questions and boost your confidence.</p>
+                        </div>
+                        <button class="view-content-btn" style="margin-top: 20px; padding: 10px 20px;"><span>View Content</span></button>
+                    </div>
+                </div>
+                        
+                <div class="feature-card" style="flex: 1; padding: 20px;">
+                    <div class="card-content">
+                        <h3>CBSE- Class X</h3>
+                        <p>Additional practice problems, video lectures, and interactive quizzes. Take your learning experience to the next level with our extra resources.</p>
+                    </div>
+                    <button class="view-content-btn"><span>View Content</span></button>
+                </div>
+                <div class="feature-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                    <!-- Feature Card 1 -->
+                    <div class="feature-card" style="flex: 1; min-width: 300px; padding: 20px; display: flex; flex-direction: column; align-items: center;">
+                        <div class="card-content" style="text-align: center;">
+                            <h3>NCERT Lite</h3>
+                            <p>Additional practice problems, video lectures, and interactive quizzes. Take your learning experience to the next level with our extra resources.</p>
+                        </div>
+                        <button class="view-content-btn" style="margin-top: 20px; padding: 10px 20px;"><span>View Content</span></button>
+                    </div>
+                
+                    <!-- Feature Card 2 -->
+                    <div class="feature-card" style="flex: 1; min-width: 300px; padding: 20px; display: flex; flex-direction: column; align-items: center;">
+                        <div class="card-content" style="text-align: center;">
+                            <h3>PEQ-Previous Examination Questions</h3>
+                            <p>Comprehensive collection of previous years' questions with detailed solutions. Practice with real exam questions and boost your confidence.</p>
+                        </div>
+                        <button class="view-content-btn" style="margin-top: 20px; padding: 10px 20px;"><span>View Content</span></button>
+                    </div>
+                </div>
+
+                <div class="feature-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                    <!-- Feature Card 1 -->
+                    <div class="feature-card" style="flex: 1; min-width: 300px; padding: 20px; display: flex; flex-direction: column; align-items: center;">
+                        <div class="card-content" style="text-align: center;">
+                            <h3>Xtra by edXtra</h3>
+                            <p>Additional practice problems, video lectures, and interactive quizzes. Take your learning experience to the next level with our extra resources.</p>
+                        </div>
+                        <button class="view-content-btn" style="margin-top: 20px; padding: 10px 20px;"><span>View Content</span></button>
+                    </div>
+                
+                    <!-- Feature Card 2 -->
+                    <div class="feature-card" style="flex: 1; min-width: 300px; padding: 20px; display: flex; flex-direction: column; align-items: center;">
+                        <div class="card-content" style="text-align: center;">
+                            <h3>edXtra Shop</h3>
+                            <p>Comprehensive collection of previous years' questions with detailed solutions. Practice with real exam questions and boost your confidence.</p>
+                        </div>
+                        <button class="view-content-btn" style="margin-top: 20px; padding: 10px 20px;"><span>Shop Now</span></button>
+                    </div>
+                </div>
+
+
+
+                <div class="feature-card" style="flex: 1; padding: 20px;">
+                    <div class="card-content">
+                        <h3>Welcome to edXtra</h3>
+                        <p>Additional practice problems, video lectures, and interactive quizzes. Take your learning experience to the next level with our extra resources.</p>
+                    </div>
+                    <button class="view-content-btn"><span>About Us</span></button>
+                </div>
+                
+                <div class="feature-card" style="flex: 1; padding: 20px;">
+                    <div class="card-content">
+                        <h3>At edXtra</h3>
+                        <p>Comprehensive collection of previous years' questions with detailed solutions. Practice with real exam questions and boost your confidence.</p>
+                    </div>
+                    <button class="view-content-btn"><span>Read More</span></button>
+                </div>
+                
+                <div class="feature-card" style="flex: 1; padding: 20px;">
+                    <div class="card-content">
+                        <h3>Join edXtra Community</h3>
+                        <p>Join peer study groups and participate in collaborative learning sessions. Learn together and grow together with our community features.</p>
+                    </div>
+                    <button class="view-content-btn"><span>Join Now</span></button>
+                </div>
+                
+                <style>
+                    /* Mobile-specific button alignment */
+                    @media (max-width: 768px) {
+                        .feature-card {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                        }
+                        .view-content-btn {
+                            margin-top: 20px; /* Adds space between text and button */
+                        }
+                    }
+                </style>
+                
+        </div>
+    </section>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevButton = document.getElementById('prevSlide');
+        const nextButton = document.getElementById('nextSlide');
+        const dotsContainer = document.querySelector('.slider-dots');
+        let currentSlide = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function showSlide(index) {
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+                slide.style.transform = 'translateX(100%)';
+            });
+            slides[index].classList.add('active');
+            slides[index].style.transform = 'translateX(0)';
+            updateDots();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+        }
+
+        // Touch events for swipe
+        const slider = document.querySelector('.slider');
+        
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        slider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeDistance = touchEndX - touchStartX;
+            if (Math.abs(swipeDistance) > 50) { // Minimum swipe distance
+                if (swipeDistance > 0) {
+                    prevSlide();
+                } else {
+                    nextSlide();
+                }
+            }
+        }
+
+        // Event listeners
+        prevButton.addEventListener('click', prevSlide);
+        nextButton.addEventListener('click', nextSlide);
+
+        // Auto advance slides every 5 seconds
+        setInterval(nextSlide, 5000);
+    </script>
+           <footer class="footer_">
+        <div class="footer_inner">
+            <div class="footer_column footer_is-logo">
+                <a href="#" class="footer_main-logo">
+                    <div class="footer_logo">
+                        <img src="/assets/image/Xlogo.png" alt="edXtra" class="footer_img">
+                    </div>
+                    <div class="footer_logo-info">
+                        <div class="footer_text">edXtra</div>
+                        <span class="footer_copyright">© 2024. All rights reserved.</span>
+                    </div>
+                </a>
+            </div>
+    
+            <div class="footer_column footer_is-navigation">
+                <div class="footer_column-title"><ion-icon name="logo-xing" class="company"></ion-icon>Company</div>
+                <ul>
+                    <li><ion-icon name="home-outline" class="company"></ion-icon><a href="/index.html" class="footer_a">Home</a></li>
+                    <li><ion-icon name="rocket-outline" class="company"></ion-icon><a href="/about_us.html" class="footer_a">About Us</a></li>
+                    <li><ion-icon name="call-outline" class="company"></ion-icon><a href="/contact_us.html" class="footer_a">Contact Us</a></li>
+                    <li><ion-icon name="logo-foursquare" class="company"></ion-icon><a href="/founders.html" class="footer_a">Founders Desk</a></li>
+                    <li><ion-icon name="people-outline" class="company"></ion-icon><a href="/team.html" class="footer_a">Team</a></li>
+                    <li><ion-icon name="person-add-outline" class="company"></ion-icon><a href="/join_us.html" class="footer_a">Join Us</a></li>
+                    <li><ion-icon name="ticket-outline" class="company"></ion-icon><a href="/support.html" class="footer_a">Support</a></li>
+                </ul>
+                <div class="footer_column-title"><ion-icon name="document-outline" class="company"></ion-icon>Legal</div>
+                <ul>
+                    <li><a href="/terms-and-conditions.html" class="footer_a">Terms and Conditions</a></li>
+                    <li><a href="/privacy-policy.html" class="footer_a">Privacy Policy</a></li>
+                    <li><a href="/credits.html" class="footer_a">Credits</a></li>
+                    <li><a href="/refund-policy.html" class="footer_a">Refund Policy</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer_column footer_is-navigation">
+                <div class="footer_column-title"><ion-icon name="earth-outline" class="company"></ion-icon>Social</div>
+                <ul>
+                    <li><a href="https://x.com/edxtra_online" target="_blank" class="footer_a"><ion-icon name="logo-twitter"></ion-icon> edxtra_online</a></li>
+                    <li><a href="https://www.instagram.com/edxtra.online/" target="_blank" class="footer_a"><ion-icon name="logo-instagram"></ion-icon> edxtra.online</a></li>
+                    <li><a href="https://www.facebook.com/people/edxtraonline/61562638332038/" target="_blank" class="footer_a"><ion-icon name="logo-facebook"></ion-icon> edxtra.online</a></li>
+                    <li><a href="https://www.linkedin.com/company/edxtra" target="_blank" class="footer_a"><ion-icon name="logo-linkedin"></ion-icon> edxtra</a></li>
+                </ul>
+                <div class="footer_column-title"><ion-icon name="storefront-outline" class="company"></ion-icon>Shop.edXtra</div>
+                <ul>
+                    <li><a href="#" target="_blank" class="footer_a">Notes</a></li>
+                    <li><a href="#" target="_blank" class="footer_a">Modules</a></li>
+                    <li><a href="#" target="_blank" class="footer_a">Map Booklet</a></li>
+                    <li><a href="#" target="_blank" class="footer_a">Social Science</a></li>
+                    <li><a href="#" target="_blank" class="footer_a">Science</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer_column footer_is-navigation">
+                <div class="footer_column-title"><ion-icon name="grid-outline" class="company"></ion-icon>Boards</div>
+                <ul>
+                    <li><a href="/CBSE.html" class="footer_a">CBSE</a></li>
+                    <li><a href="/ICSE.html" class="footer_a">ICSE</a></li>
+                </ul>
+                <div class="footer_column-title"><ion-icon name="cube-outline" class="company"></ion-icon>Resources</div>
+                <ul>
+                    <li><a href="/ncert_lite.html" class="footer_a">NCERT Lite</a></li>
+                    <li><a href="/peq.html" class="footer_a">PEQ-Previous Examination Questions</a></li>
+                    <li><a href="/xtra.html" class="footer_a">Xtra</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer_column footer_is-navigation">
+                <div class="footer_column-title"><ion-icon name="ribbon-outline" class="company"></ion-icon>Classes</div>
+                <ul>
+                    <li><a href="/class10/index.html" class="footer_a">Grade X</a></li>
+                    <li><a href="/class9/index.html" class="footer_a">Grade IX</a></li>
+                </ul>
+                <div class="footer_column-title"><ion-icon name="receipt-outline" class="company"></ion-icon>Subjects</div>
+                <ul>
+                    <li><a href="/science.html" class="footer_a">Science</a></li>
+                    <li><a href="/sst.html" class="footer_a">Social Science</a></li>
+                    <li><a href="/maths.html" class="footer_a">Maths</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
